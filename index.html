@@ -47,7 +47,10 @@
       gap: 20px;
       padding: 22px 0;
     }
-    .brand { color: #fff; font-weight: 800; letter-spacing: .05em; }
+    .brand { display: inline-flex; align-items: center; gap: 14px; min-width: 0; color: #fff; }
+    .brand img { display: block; width: auto; object-fit: contain; }
+    .brand-sysu { height: 44px; }
+    .brand-school { height: 42px; max-width: 300px; }
     .nav-links { display: flex; flex-wrap: wrap; gap: 18px; justify-content: flex-end; }
     .nav-links a { color: rgba(255,255,255,.88); font-size: 16px; }
     .nav-links a:hover, .nav-links a[aria-current="location"] { color: #fff; text-decoration: underline; text-underline-offset: 5px; }
@@ -161,8 +164,9 @@
     .topic-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 34px; }
     .topic-group { padding-top: 16px; border-top: 2px solid #d9e2ec; }
     .topic-group h4 { margin: 0 0 8px; color: var(--ink); font-size: 20px; line-height: 1.45; }
-    .topic-group p { margin: 0; color: var(--ink-soft); font-size: 18px; line-height: 1.85; }
-    .topic-number { color: var(--blue-deep); font-weight: 800; white-space: nowrap; }
+    .topic-list { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+    .topic-list li { position: relative; padding-left: 18px; color: var(--ink-soft); font-size: 18px; line-height: 1.65; text-align: left; }
+    .topic-list li::before { position: absolute; top: .78em; left: 1px; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); content: ""; }
     .check-list { margin: 0; padding-left: 22px; }
     .check-list li { margin: 13px 0; color: var(--ink-soft); font-size: 18px; }
     .theme-band { margin-top: 23px; padding: 18px 22px; border: 1px solid rgba(255,255,255,.35); border-left: 5px solid var(--teal); border-radius: 8px; background: rgba(5,29,68,.35); }
@@ -218,8 +222,12 @@
     .contact-email small { color: var(--ink-soft); font-size: 15px; font-weight: 750; }
     .contact-email a { margin-top: 3px; font-size: 20px; font-weight: 800; }
     .contact-email p { margin: 4px 0 0; color: var(--ink-soft); font-size: 16px; }
-    .committee { columns: 2; column-gap: 34px; margin: 0; padding-left: 21px; }
-    .committee li { break-inside: avoid; padding: 7px 0; color: var(--ink-soft); font-size: 18px; }
+    .committee-table { margin-top: 12px; }
+    .committee-header, .committee li { display: grid; grid-template-columns: 7em 7em minmax(0, 1fr); gap: 18px; align-items: start; }
+    .committee-header { padding: 0 14px 8px; color: var(--ink-soft); font-size: 15px; font-weight: 750; }
+    .committee { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+    .committee li { padding: 13px 14px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 18px; }
+    .committee-name { color: var(--ink); font-weight: 800; }
     .copy-email { margin-top: 15px; padding: 9px 13px; color: var(--blue-deep); border: 1px solid #b9cde2; border-radius: 9px; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
     .copy-email:hover { background: var(--sky); }
     .back-to-top { position: fixed; right: 22px; bottom: 22px; z-index: 10; display: grid; width: 46px; height: 46px; place-items: center; color: #fff; background: var(--blue-deep); border-radius: 50%; box-shadow: 0 8px 22px rgba(16,42,67,.25); font-size: 22px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease; }
@@ -248,7 +256,9 @@
       .section-heading p, .muted { font-size: 18px; }
       .quick-grid, .topic-groups, .fee-grid, .org-grid, .contact-grid, .leadership-grid { grid-template-columns: 1fr; }
       .venue-intro, .venue-routes { grid-template-columns: 1fr; }
-      .committee { columns: 1; }
+      .committee-header, .committee li { grid-template-columns: 5.5em 5.5em minmax(0, 1fr); gap: 10px; }
+      .committee-header { padding-right: 8px; padding-left: 8px; font-size: 13px; }
+      .committee li { padding-right: 8px; padding-left: 8px; font-size: 16px; }
       .panel { padding: 21px; }
       .countdown-card { align-items: flex-start; flex-direction: column; gap: 12px; }
       .countdown-number { text-align: left; }
@@ -267,7 +277,13 @@
       .carousel-arrow.next { right: 10px; }
       .schedule-event { grid-template-columns: 105px 1fr; gap: 10px; font-size: 17px; }
       .contact-email { align-items: flex-start; flex-direction: column; }
+      .brand { gap: 8px; }
+      .brand-sysu, .brand-school { height: 24px; }
       .back-to-top { right: 14px; bottom: 14px; }
+    }
+    @media (max-width: 360px) {
+      .brand-sysu, .brand-school { height: 20px; }
+      .brand-school { max-width: 150px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
@@ -278,7 +294,10 @@
   <header class="hero" id="top">
     <div class="wrap">
       <nav class="nav" aria-label="主导航">
-        <a class="brand" href="#top">DNPW 2027</a>
+        <a class="brand" href="#top" aria-label="中山大学与中山大学航空航天学院">
+          <img class="brand-sysu" src="assets/sysu-logo.png" alt="中山大学">
+          <img class="brand-school" src="assets/saa-logo.png" alt="中山大学航空航天学院">
+        </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">☰ <span>目录</span></button>
         <div class="nav-links" id="primary-navigation">
           <a href="#overview">会议概览</a>
@@ -396,19 +415,43 @@
             <div class="topic-groups">
               <section class="topic-group">
                 <h4>爆震基础与发动机</h4>
-                <p><span class="topic-number">1.</span> 爆震理论与爆震的起爆、传播机理；<span class="topic-number">2.</span> 爆震燃烧数值模拟技术；<span class="topic-number">3.</span> 爆震发动机性能分析方法；<span class="topic-number">4.</span> 爆震发动机总体及系统集成技术；<span class="topic-number">5.</span> 爆震试验及测试技术。</p>
+                <ul class="topic-list">
+                  <li>爆震理论与爆震的起爆、传播机理</li>
+                  <li>爆震燃烧数值模拟技术</li>
+                  <li>爆震发动机性能分析方法</li>
+                  <li>爆震发动机总体及系统集成技术</li>
+                  <li>爆震试验及测试技术</li>
+                </ul>
               </section>
               <section class="topic-group">
                 <h4>组合动力总体与关键技术</h4>
-                <p><span class="topic-number">6.</span> 基于爆震燃烧的组合动力总体与工作过程；<span class="topic-number">7.</span> 强预冷组合动力总体技术；<span class="topic-number">8.</span> 强预冷组合动力工作过程与关键技术；<span class="topic-number">9.</span> TBCC发动机总体及关键技术；<span class="topic-number">10.</span> TBCC发动机模态转换与控制技术；<span class="topic-number">11.</span> RBCC组合动力总体技术与工作过程；<span class="topic-number">12.</span> RBCC组合动力关键技术。</p>
+                <ul class="topic-list">
+                  <li>基于爆震燃烧的组合动力总体与工作过程</li>
+                  <li>强预冷组合动力总体技术</li>
+                  <li>强预冷组合动力工作过程与关键技术</li>
+                  <li>TBCC发动机总体及关键技术</li>
+                  <li>TBCC发动机模态转换与控制技术</li>
+                  <li>RBCC组合动力总体技术与工作过程</li>
+                  <li>RBCC组合动力关键技术</li>
+                </ul>
               </section>
               <section class="topic-group">
                 <h4>新型推进与燃料技术</h4>
-                <p><span class="topic-number">13.</span> 激光/磁流体推进总体及关键技术；<span class="topic-number">14.</span> 新型动力进排气技术；<span class="topic-number">15.</span> 适用于新型动力的高性能燃料技术；<span class="topic-number">16.</span> 等离子体技术在新型推进中应用；<span class="topic-number">17.</span> 对转涡轮发动机关键技术。</p>
+                <ul class="topic-list">
+                  <li>激光/磁流体推进总体及关键技术</li>
+                  <li>新型动力进排气技术</li>
+                  <li>适用于新型动力的高性能燃料技术</li>
+                  <li>等离子体技术在新型推进中应用</li>
+                  <li>对转涡轮发动机关键技术</li>
+                </ul>
               </section>
               <section class="topic-group">
                 <h4>热管理与其他新概念动力</h4>
-                <p><span class="topic-number">18.</span> 热防护与综合热管理技术；<span class="topic-number">19.</span> 固体推进剂及含能液体燃料技术；<span class="topic-number">20.</span> 其它新概念动力技术。</p>
+                <ul class="topic-list">
+                  <li>热防护与综合热管理技术</li>
+                  <li>固体推进剂及含能液体燃料技术</li>
+                  <li>其它新概念动力技术</li>
+                </ul>
               </section>
             </div>
           </div>
@@ -567,13 +610,16 @@
         </div>
         <div class="committee-block">
           <h3>会议组委会</h3>
-          <ul class="committee">
-            <li><strong>吴垚锃</strong>　高工（北京动力机械研究所）</li>
-            <li><strong>蔡明屿</strong>　副主任（冲压发动机技术全国重点实验室）</li>
-            <li><strong>陈鑫</strong>　副教授（航空动力系统与等离子体技术全国重点实验室）</li>
-            <li><strong>张雅凤</strong>　研究员（《推进技术》编辑部）</li>
-            <li><strong>林志勇</strong>　教授（中山大学）</li>
-          </ul>
+          <div class="committee-table">
+            <div class="committee-header" aria-hidden="true"><span>姓名</span><span>职务 / 职称</span><span>单位</span></div>
+            <ul class="committee">
+              <li><span class="committee-name">吴垚锃</span><span>高工</span><span>北京动力机械研究所</span></li>
+              <li><span class="committee-name">蔡明屿</span><span>副主任</span><span>冲压发动机技术全国重点实验室</span></li>
+              <li><span class="committee-name">陈鑫</span><span>副教授</span><span>航空动力系统与等离子体技术全国重点实验室</span></li>
+              <li><span class="committee-name">张雅凤</span><span>研究员</span><span>《推进技术》编辑部</span></li>
+              <li><span class="committee-name">林志勇</span><span>教授</span><span>中山大学</span></li>
+            </ul>
+          </div>
         </div>
       </section>
 
