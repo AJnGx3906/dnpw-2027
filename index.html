@@ -123,7 +123,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-top: -48px;
+      margin-top: 24px;
       position: relative;
     }
     .quick-card {
@@ -222,11 +222,8 @@
     .contact-email small { color: var(--ink-soft); font-size: 15px; font-weight: 750; }
     .contact-email a { margin-top: 3px; font-size: 20px; font-weight: 800; }
     .contact-email p { margin: 4px 0 0; color: var(--ink-soft); font-size: 16px; }
-    .committee-table { margin-top: 12px; }
-    .committee-header, .committee li { display: grid; grid-template-columns: 7em 7em minmax(0, 1fr); gap: 18px; align-items: start; }
-    .committee-header { padding: 0 14px 8px; color: var(--ink-soft); font-size: 15px; font-weight: 750; }
-    .committee { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-    .committee li { padding: 13px 14px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 18px; }
+    .committee { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 28px; margin: 0; padding-left: 22px; }
+    .committee li { display: grid; grid-template-columns: 3em 3em minmax(0, 1fr); gap: 1em; align-items: start; min-width: 0; padding: 7px 0; color: var(--ink-soft); font-size: 18px; }
     .committee-name { color: var(--ink); font-weight: 800; }
     .copy-email { margin-top: 15px; padding: 9px 13px; color: var(--blue-deep); border: 1px solid #b9cde2; border-radius: 9px; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
     .copy-email:hover { background: var(--sky); }
@@ -256,9 +253,8 @@
       .section-heading p, .muted { font-size: 18px; }
       .quick-grid, .topic-groups, .fee-grid, .org-grid, .contact-grid, .leadership-grid { grid-template-columns: 1fr; }
       .venue-intro, .venue-routes { grid-template-columns: 1fr; }
-      .committee-header, .committee li { grid-template-columns: 5.5em 5.5em minmax(0, 1fr); gap: 10px; }
-      .committee-header { padding-right: 8px; padding-left: 8px; font-size: 13px; }
-      .committee li { padding-right: 8px; padding-left: 8px; font-size: 16px; }
+      .committee { grid-template-columns: 1fr; gap: 4px; }
+      .committee li { grid-template-columns: 3em 3em minmax(0, 1fr); gap: .65em; font-size: 16px; }
       .panel { padding: 21px; }
       .countdown-card { align-items: flex-start; flex-direction: column; gap: 12px; }
       .countdown-number { text-align: left; }
@@ -610,16 +606,13 @@
         </div>
         <div class="committee-block">
           <h3>会议组委会</h3>
-          <div class="committee-table">
-            <div class="committee-header" aria-hidden="true"><span>姓名</span><span>职务 / 职称</span><span>单位</span></div>
-            <ul class="committee">
-              <li><span class="committee-name">吴垚锃</span><span>高工</span><span>北京动力机械研究所</span></li>
-              <li><span class="committee-name">蔡明屿</span><span>副主任</span><span>冲压发动机技术全国重点实验室</span></li>
-              <li><span class="committee-name">陈鑫</span><span>副教授</span><span>航空动力系统与等离子体技术全国重点实验室</span></li>
-              <li><span class="committee-name">张雅凤</span><span>研究员</span><span>《推进技术》编辑部</span></li>
-              <li><span class="committee-name">林志勇</span><span>教授</span><span>中山大学</span></li>
-            </ul>
-          </div>
+          <ul class="committee">
+            <li><span class="committee-name">吴垚锃</span><span>高工</span><span>北京动力机械研究所</span></li>
+            <li><span class="committee-name">蔡明屿</span><span>副主任</span><span>冲压发动机技术全国重点实验室</span></li>
+            <li><span class="committee-name">陈鑫</span><span>副教授</span><span>航空动力系统与等离子体技术全国重点实验室</span></li>
+            <li><span class="committee-name">张雅凤</span><span>研究员</span><span>《推进技术》编辑部</span></li>
+            <li><span class="committee-name">林志勇</span><span>教授</span><span>中山大学</span></li>
+          </ul>
         </div>
       </section>
 
